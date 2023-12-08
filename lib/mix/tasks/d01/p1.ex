@@ -4,7 +4,7 @@ defmodule Mix.Tasks.D01.P1 do
   @digits Range.new(0, 9) |> Enum.map(&to_string/1)
 
   def run(_) do
-    {:ok, content} = File.read("01a.input")
+    {:ok, content} = File.read("lib/mix/tasks/d01/input.txt")
 
     content
     |> String.split("\n")

@@ -5,7 +5,7 @@ defmodule Mix.Tasks.D01.P2 do
   @w_numbers ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
   def run(_) do
-    {:ok, content} = File.read("01a.input")
+    {:ok, content} = File.read("lib/mix/tasks/d01/input.txt")
 
     content
     |> String.split("\n")
