@@ -1,15 +1,10 @@
-# leggo file
-# loop sulle righe
-# per ogni riga:
-#  - tengo il primo numero
-#  - tengo l'ultimo
-#  - li sommo e li aggiungo alla somma totale
+defmodule Mix.Tasks.D01.P2 do
+  use Mix.Task
 
-defmodule AOC.D01B do
-  @digits ["0","1","2","3","4","5","6","7","8","9"]
+  @digits ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
   @w_numbers ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
-  def run do
+  def run(_) do
     {:ok, content} = File.read("01a.input")
 
     content
@@ -27,8 +22,12 @@ defmodule AOC.D01B do
     |> String.codepoints()
     |> extract_numbers()
     |> case do
-      [] -> [0, 0]
-      [d] -> [d, d]
+      [] ->
+        [0, 0]
+
+      [d] ->
+        [d, d]
+
       [first_digit | tail] ->
         [
           first_digit,
@@ -43,21 +42,21 @@ defmodule AOC.D01B do
     Enum.reverse(digits)
   end
 
-  def extract_numbers([head|tail], current_word, digits) do
-    IO.puts(head)
-    IO.inspect(digits)
+  def extract_numbers([head | tail], current_word, digits) do
     cond do
       head in @digits ->
         {v, _} = Integer.parse(head)
-        extract_numbers(tail, "", [v|digits])
-      current_word <> head in @w_numbers ->
-        extract_numbers([head|tail], "", [numerify(current_word <> head)|digits])
+        extract_numbers(tail, "", [v | digits])
+
+      (current_word <> head) in @w_numbers ->
+        extract_numbers([head | tail], "", [numerify(current_word <> head) | digits])
+
       is_prefix?(current_word <> head) ->
         extract_numbers(tail, current_word <> head, digits)
+
       true ->
         extract_numbers(tail, head, digits)
     end
-
   end
 
   defp is_prefix?(word) do
@@ -76,6 +75,3 @@ defmodule AOC.D01B do
   defp numerify("eight"), do: 8
   defp numerify("nine"), do: 9
 end
-
-# AOC.D01B.run()
-AOC.D01B.extract_numbers(String.codepoints("pmzqmmdh9vqvxrxbhglj7")) |>IO.inspect

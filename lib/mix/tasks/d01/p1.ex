@@ -1,14 +1,9 @@
-# leggo file
-# loop sulle righe
-# per ogni riga:
-#  - tengo il primo numero
-#  - tengo l'ultimo
-#  - li sommo e li aggiungo alla somma totale
+defmodule Mix.Tasks.D01.P1 do
+  use Mix.Task
 
-defmodule AOC.D01A do
   @digits Range.new(0, 9) |> Enum.map(&to_string/1)
 
-  def run do
+  def run(_) do
     {:ok, content} = File.read("01a.input")
 
     content
@@ -27,8 +22,12 @@ defmodule AOC.D01A do
     |> Enum.filter(fn codepoint -> codepoint in @digits end)
     |> Enum.map(&String.to_integer/1)
     |> case do
-      [] -> [0, 0]
-      [d] -> [d, d]
+      [] ->
+        [0, 0]
+
+      [d] ->
+        [d, d]
+
       [first_digit | tail] ->
         [
           first_digit,
@@ -39,5 +38,3 @@ defmodule AOC.D01A do
 
   defp get_calibration_value([first_digit, last_digit]), do: first_digit * 10 + last_digit
 end
-
-AOC.D01A.run()
