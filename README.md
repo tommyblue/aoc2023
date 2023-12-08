@@ -1,6 +1,20 @@
 # Aoc2023
 
-**TODO: Add description**
+## Run a problem solution
+You can define solutions as mix tasks by creating an elixir file in the `lib/mix/tasks` directory
+and using the `Mix.Task` behaviour.
+
+Let `lib/mix/tasks/d01/p1.ex` be the solution to the first part of the day one problem
+```elixir
+defmodule Mix.Tasks.D01.P1 do
+  use Mix.Task
+
+  def run(_) do
+    ...
+  end
+end
+```
+You can run the solution via `mix d01.p1`
 
 ## Installation
 
