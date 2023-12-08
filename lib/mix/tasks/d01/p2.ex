@@ -55,7 +55,7 @@ defmodule Mix.Tasks.D01.P2 do
         extract_numbers(tail, current_word <> head, digits)
 
       true ->
-        extract_numbers(tail, head, digits)
+        extract_numbers(tail, String.slice(current_word, 1..-1) <> head, digits)
     end
   end
 
